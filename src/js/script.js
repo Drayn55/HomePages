@@ -1,105 +1,3 @@
-function updateDateTime() {
-
-    updateDayList();
-
-    const Today = new Date();
-    const Month = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const TodayString = Today.getDate() + ' ' + Month[Today.getMonth()] + ' ' + Today.getFullYear();
-    const HoursAndMinutes = new Intl.DateTimeFormat('default', { hour: '2-digit', minute: '2-digit' }).format(Today);
-    const dayListItems = document.querySelectorAll('#day-list li');
-
-    document.getElementById('datehours').innerHTML = HoursAndMinutes;
-    document.getElementById('datetime').innerHTML = TodayString;
-
-    for (let i = 0; i < dayListItems.length; i++) {
-        if (i === Today.getDay()) {
-            dayListItems[i].classList.add('active');
-        } else {
-            dayListItems[i].classList.remove('active');
-        }
-    }
-}
-
-function updateDayList() {
-    const days = ['Sun', 'Mon', 'Tus', 'We', 'The', 'Fri', 'Sat'];
-    const dayList = document.getElementById('day-list');
-
-    while (dayList.firstChild) {
-        dayList.removeChild(dayList.firstChild);
-    }
-
-    for (let i = 0; i < days.length; i++) {
-        const dayListItem = document.createElement('li');
-        dayListItem.innerHTML = days[i];
-        dayList.appendChild(dayListItem);
-    }
-}
-
-updateDateTime();
-setInterval(updateDateTime, 5000);
-
-var searchInput = document.getElementById('input-google');
-searchInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        performSearch();
-    }
-});
-
-function forceString(input) {
-    return String(input);
-}
-
-function sanitizeInput(input) {
-    var stringInput = forceString(input);
-    var sanitizedInput = stringInput.replace(/[^a-zA-Z0-9 ]/g, '');
-    return sanitizedInput;
-}
-
-function performSearch() {
-    var searchTerms = document.getElementById('input-google').value;
-    var sanitizedSearchTerms = sanitizeInput(searchTerms);
-    window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(sanitizedSearchTerms);
-}
-
-// dark mode
-
-const oclock = document.querySelector('.oclock');
-const header = document.querySelector('.header');
-const backContent = document.querySelectorAll(".back-content");
-const navigator = document.querySelector('.navigator');
-const optionNavigation = document.querySelector('.opstion');
-const modeTheme = document.querySelector('.mode-theme');
-const inputGoogle = document.getElementById('input-google');
-
-let darkMode = false;
-function toggleDarkMode() {
-    darkMode = !darkMode;
-    const applyDarkMode = (darkMode) => {
-        navigator.classList.toggle('text-dark-mode', darkMode);
-        header.classList.toggle('background-transparant-dark-mode', darkMode);
-        oclock.classList.toggle('text-dark-mode', darkMode);
-        oclock.classList.toggle('background-dark-mode', darkMode);
-        inputGoogle.classList.toggle('background-transparant-day-mode', darkMode);
-        backContent.forEach(backContent => {
-            backContent.classList.toggle('background-dark-mode-item', darkMode);
-        });
-    };
-    applyDarkMode(darkMode);
-}
-modeTheme.addEventListener('click', toggleDarkMode);
-
-// dark sun
-
-const sun = document.querySelectorAll('.sun')[1];
-const container = document.querySelector('.container');
-const moon = document.querySelector('.moon');
-
-modeTheme.addEventListener("click", function () {
-    moon.classList.toggle('moonActive');
-    sun.classList.toggle('dark-sun');
-    container.classList.toggle('bg-dark')
-})
-
 // card
 
 const jsonData = [
@@ -125,14 +23,12 @@ const jsonData = [
     },
 
     {
-        name: 'Netflix',
-        link: 'https://www.netflix.com',
-        image: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
-        viewBox="0 0 24 24" fill="white">
-        <path
-            d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M16,17.625 c0,0-0.009,0.003-0.011,0.004c-0.001,0.09-0.023,0.178-0.086,0.248C15.83,17.957,15.729,18,15.625,18c-0.009,0-0.06,0-0.132-0.023 c-0.301-0.097-1.07-0.373-1.635-0.474c-0.15-0.027-0.276-0.127-0.346-0.262L10.5,11.352v5.773c0,0.184-0.132,0.34-0.313,0.37 c-0.704,0.117-1.67,0.478-1.68,0.481C8.464,17.992,8.419,18,8.375,18c-0.075,0-0.15-0.022-0.213-0.066 C8.061,17.863,8,17.748,8,17.625V6.375C8,6.168,8.168,6,8.375,6h1.75l0,0l0,0c0.143,0,0.274,0.081,0.336,0.21l3.038,6.214V6.375 C13.5,6.168,13.668,6,13.875,6h1.75C15.832,6,16,6.168,16,6.375V17.625z">
-        </path>
-    </svg>`
+        name: 'Gmail',
+        link: 'https://mail.google.com',
+        image: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256"
+        style="fill:white">
+        <g fill="white" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M12,23.403v-0.013v-13.001l-0.12,-0.089h-0.01l-2.73,-2.02c-1.67,-1.24 -4.05,-1.18 -5.53,0.28c-0.99,0.98 -1.61,2.34 -1.61,3.85v3.602zM38,23.39v0.013l10,-7.391v-3.602c0,-1.49 -0.6,-2.85 -1.58,-3.83c-1.46,-1.457 -3.765,-1.628 -5.424,-0.403l-2.876,2.123l-0.12,0.089zM14,24.868l10.406,7.692c0.353,0.261 0.836,0.261 1.189,0l10.405,-7.692v-13.001l-11,8.133l-11,-8.133zM38,25.889v15.111c0,0.552 0.448,1 1,1h6.5c1.381,0 2.5,-1.119 2.5,-2.5v-21.003zM12,25.889l-10,-7.392v21.003c0,1.381 1.119,2.5 2.5,2.5h6.5c0.552,0 1,-0.448 1,-1z"></path></g></g>
+        </svg>`
     },
 
     {
@@ -180,13 +76,10 @@ const jsonData = [
     },
 
     {
-        name: 'Jira',
-        link: 'https://www.atlassian.com/software/jira?&aceid=&adposition=&adgroup=151705168060&campaign=20329855374&creative=679894919195&device=c&keyword=jira&matchtype=e&network=g&placement=&ds_kids=p77096705535&ds_e=GOOGLE&ds_eid=700000001558501&ds_e1=GOOGLE&gad_source=1&gclid=CjwKCAiAvdCrBhBREiwAX6-6UjpizaiYkhjIpCBGohPmZrM6tdEf8V3dR1QYKtN80focw1Iay33B3BoC8uYQAvD_BwE&gclsrc=aw.ds',
-        image: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
-        viewBox="0 0 44.169 45.988" fill="white">
-        <path
-            d="M 21.955078 0 A 1.029 1.029 0 0 0 21.292969 0.28125 A 11.988 11.988 0 0 0 18 7.9882812 A 11.982 11.982 0 0 0 21.292969 15.699219 L 22.169922 16.578125 L 23.5 17.900391 L 28.585938 22.986328 L 23.5 28.074219 L 24.292969 28.867188 A 13.886 13.886 0 0 1 28.171875 37.988281 A 11.481 11.481 0 0 1 27.880859 40.521484 L 43.292969 25.109375 A 3 3 0 0 0 43.292969 20.867188 L 22.705078 0.28125 A 1.029 1.029 0 0 0 21.955078 0 z M 16.289062 5.4550781 L 0.87695312 20.867188 A 3 3 0 0 0 0.87695312 25.109375 L 21.462891 45.699219 A 1 1 0 0 0 22.876953 45.699219 A 11.982 11.982 0 0 0 26.169922 37.992188 A 11.988 11.988 0 0 0 22.876953 30.285156 L 15.583984 22.988281 L 20.669922 17.900391 L 19.876953 17.107422 A 13.877 13.877 0 0 1 16 7.9882812 A 11.478 11.478 0 0 1 16.289062 5.4550781 z">
-        </path>
+        name: 'Vs Code',
+        link: 'https://vscode.dev/',
+        image: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50" fill="white">
+        <path d="M 35.445312 2.0117188 C 35.056812 2.0253438 34.669266 2.1265938 34.322266 2.3085938 C 35.227266 2.7565937 35.865703 3.6414062 35.970703 4.6914062 C 35.988703 4.8174062 36 4.9322812 36 4.9882812 L 36 44.988281 C 36 46.174281 35.306594 47.190734 34.308594 47.677734 C 34.672594 47.876734 35.079 47.988281 35.5 47.988281 C 35.873 47.988281 36.224969 47.901859 36.542969 47.755859 L 36.544922 47.759766 C 38.152922 46.927766 46.192281 42.764703 46.488281 42.595703 C 47.421281 42.060703 48 41.061281 48 39.988281 L 48 9.9882812 C 48 8.9902813 47.505734 8.0619062 46.677734 7.5039062 C 46.357734 7.2869063 36.582031 2.2363281 36.582031 2.2363281 L 36.580078 2.2402344 C 36.224078 2.0727344 35.833813 1.9980938 35.445312 2.0117188 z M 33 3.9882812 C 32.744125 3.9882812 32.487969 4.08575 32.292969 4.28125 C 32.292969 4.28125 26.568469 10.718844 20.230469 17.839844 L 27.724609 23.970703 L 34 18.685547 L 34 4.9882812 C 34 4.7322812 33.902031 4.47625 33.707031 4.28125 C 33.511531 4.08575 33.255875 3.9882812 33 3.9882812 z M 8 10.988281 C 7.844 10.988281 7.5538594 10.988844 6.2558594 11.589844 C 5.5408594 11.920844 3.0507812 13.228516 3.0507812 13.228516 C 2.7207812 13.407516 2.4545781 13.687719 2.2675781 14.011719 C 2.3435781 13.999719 2.4190469 13.988281 2.4980469 13.988281 L 2.5 13.988281 C 3.168 13.988281 3.5776562 14.454469 3.7226562 14.605469 C 3.7226562 14.605469 31.929969 45.332313 32.292969 45.695312 C 32.487969 45.890313 32.742047 45.988281 32.998047 45.988281 C 33.254047 45.988281 33.510078 45.890313 33.705078 45.695312 C 33.900078 45.500312 34 45.244281 34 44.988281 L 34 31.658203 C 34 31.658203 9.53375 11.661813 9.34375 11.507812 C 8.97575 11.173813 8.497 10.988281 8 10.988281 z M 2.1992188 15.988281 C 2.0892188 15.988281 2 16.078453 2 16.189453 L 2 34.794922 C 2 34.901922 2.0873125 34.990234 2.1953125 34.990234 C 2.2513125 34.990234 2.3009375 34.964781 2.3359375 34.925781 L 8 28.638672 L 8 22.007812 L 2.3417969 16.046875 C 2.3057969 16.010875 2.2542188 15.988281 2.1992188 15.988281 z M 12.253906 26.802734 C 12.253906 26.802734 3.6585469 36.452781 3.5605469 36.550781 C 3.2895469 36.821781 2.915 36.988281 2.5 36.988281 C 2.422 36.988281 2.3464844 36.978797 2.2714844 36.966797 C 2.4734844 37.317797 2.7697188 37.607156 3.1367188 37.785156 L 3.1328125 37.791016 C 4.0028125 38.233016 6.8739531 39.691703 7.2519531 39.845703 C 7.4899531 39.940703 7.741 39.988281 8 39.988281 C 8.347 39.988281 8.6900469 39.898656 8.9980469 39.722656 C 9.0210469 39.709656 17.527344 32.552734 17.527344 32.552734 L 12.253906 26.802734 z"></path>
     </svg>`
     },
 
@@ -196,15 +89,15 @@ function createCard(data) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.innerHTML = `
-    <div class="card" onclick="window.location.href='${data.link}';">
+    <div class="cardv2" onclick="window.location.href='${data.link}';">
     <div class="content">
-        <div class="back-card">
-            <div class="back-content">
+        <div class="back-card bg-dark">
+            <div class="back-content bg-dark">
                 ${data.image}
                 <strong>${data.name}</strong>
             </div>
         </div>
-        <div class="front-card">
+        <div class="front-card bg-dark">
 
             <div class="img">
                 <div class="circle">
@@ -214,7 +107,7 @@ function createCard(data) {
             </div>
 
             <div class="front-content">
-                <div class="description">
+                <div class="description bg-dark-2">
                     <div class="title">
                         <p class="title">
                             <strong>Get-Link</strong>
@@ -229,8 +122,44 @@ function createCard(data) {
     return card;
 }
 
-jsonData.forEach(data => {
+
+let count = 0;
+const maxItems = 8;
+
+jsonData.some(data => {
+    if (count >= maxItems) {
+        return true; // Berhenti loop
+    }
+
     const card = createCard(data);
     const cardList = document.querySelector('.list-card');
     cardList.appendChild(card);
+
+    count++;
+
+    return false; // Lanjutkan loop
 });
+
+// seacrh
+var searchInput = document.getElementById('input-google');
+searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+});
+
+function forceString(input) {
+    return String(input);
+}
+
+function sanitizeInput(input) {
+    var stringInput = forceString(input);
+    var sanitizedInput = stringInput.replace(/[^a-zA-Z0-9 ]/g, '');
+    return sanitizedInput;
+}
+
+function performSearch() {
+    var searchTerms = document.getElementById('input-google').value;
+    var sanitizedSearchTerms = sanitizeInput(searchTerms);
+    window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(sanitizedSearchTerms);
+}

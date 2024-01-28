@@ -1,0 +1,293 @@
+.loader {
+    display: block;
+    /* width: 100px;
+    height: 100px; */
+    overflow: visible;
+  }
+  
+  .loader path.fill {
+    fill: #2Af2;
+    animation: fill 4s ease-in-out infinite;
+  }
+  
+  .loader .dash path {
+    stroke: #2AF;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    animation: dashArray var(--sped, 2s) ease-in-out infinite,
+      dashOffset var(--sped, 2s) linear infinite;
+  }
+  
+  .loader .dash path.aaa {
+    stroke-width: 2px;
+    stroke-linecap: butt;
+    clip-path: path('M 20.4603 48.5493 L 16.6461 46.9584 C 17.3209 48.3794 18.4917 49.5682 20.0447 50.2206 C 23.4007 51.6328 27.2707 50.0262 28.6694 46.6367 C 29.3464 44.9966 29.3509 43.1867 28.6806 41.5422 C 28.0103 39.8977 26.7434 38.6151 25.119 37.9315 C 23.5035 37.2544 21.7741 37.279 20.2547 37.8576 L 24.1961 39.5022 C 26.6719 40.5434 27.8427 43.4124 26.8104 45.9105 C 25.7803 48.4085 22.936 49.5905 20.4603 48.5493 Z');
+  }
+  
+  .loader .dash path.big {
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 2px #2AF);
+  }
+  
+  @keyframes dashArray {
+    0% {
+      stroke-dasharray: 0 1 359 0;
+    }
+  
+    50% {
+      stroke-dasharray: 0 359 1 0;
+    }
+  
+    100% {
+      stroke-dasharray: 359 1 0 0;
+    }
+  }
+  
+  @keyframes dashOffset {
+    0% {
+      stroke-dashoffset: -5;
+    }
+  
+    100% {
+      stroke-dashoffset: -365;
+    }
+  }
+  
+  @keyframes fill {
+    30%,
+    55% {
+      fill: #2AF0;
+    }
+  }
+  
+  
+  /* spiner */
+  .spinner {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    top: calc(50% - 64px);
+    left: calc(50% - 64px);
+    transform: perspective(206px) rotateX(45deg);
+  }
+  
+  .outer {
+    box-sizing: border-box;
+    animation: spin 3s linear infinite;
+    height: 100%;
+  }
+  
+  .inner {
+    position: absolute;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+  }
+  
+  .tl {
+    top: 0;
+    left: 0;
+    border-top: 8px solid red;
+    border-left: 10px solid red;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  .tr {
+    top: 0;
+    right: 0;
+    border-top: 8px solid #0575E6;
+    border-right: 10px solid #0575E6;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  .br {
+    bottom: 0;
+    right: 0;
+    border-bottom: 8px solid  #00F260;
+    border-right: 10px solid  #00F260;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  .bl {
+    bottom: 0;
+    left: 0;
+    border-bottom: 8px solid  #e9e93e;
+    border-left: 10x solid #e9e93e;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  .skill-bar {
+    position: relative;
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    /* background: rgba(0, 0, 0, 0.1); */
+  }
+  
+  .skill-per {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 6px;
+    transition: width 0.4s ease-in-out;
+    opacity: 0;
+  }
+  
+  .tooltip {
+    position: absolute;
+    right: -14px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #000000;
+  /*   opacity: 0; */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .skill-per.html {
+    animation: progress 0.4s ease-in-out forwards;
+    animation-delay: 0.1s;
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .skill-per:hover,
+  .skill-per:focus {
+    width: 100%;
+  }
+  
+.cardv2 {
+    overflow: visible;
+    width: 80px;
+    height: 100px;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms;
+    /* box-shadow: 0px 0px 10px 1px #000000ee; */
+    border-radius: 10px;
+}
+
+.front-card,
+.back-card {
+    /* background-color: #151515; */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+}
+
+.back-card {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.back-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: #151515; */
+    border-radius: 5px;
+    color: white;
+    font-size: small;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-content strong {
+    position: relative;
+    bottom: 15px;
+}
+
+.back-content svg {
+    width: 50%;
+}
+
+.card:hover .content {
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+
+.front-card {
+    transform: rotateY(180deg);
+    color: white;
+}
+
+.front-card .front-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+}
+
+.description {
+    /* box-shadow: 0px 0px 10px 5px #00000088; */
+    width: 100%;
+    padding: 10px;
+    /* background-color: #00000099; */
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+}
+
+.title {
+    font-size: 15px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title p {
+    width: 100%;
+    font-size: smaller;
+}
+
+.front-card .img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
