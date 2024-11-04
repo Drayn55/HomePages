@@ -124,7 +124,7 @@ function createCard(data) {
 
 
 let count = 0;
-const maxItems = 8;
+const maxItems = 9;
 
 jsonData.some(data => {
     if (count >= maxItems) {
@@ -163,3 +163,63 @@ function performSearch() {
     var sanitizedSearchTerms = sanitizeInput(searchTerms);
     window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(sanitizedSearchTerms);
 }
+
+
+
+
+
+
+
+function openModal(modalId) {
+    document.getElementById(modalId).classList.remove('hidden');
+    document.getElementById(modalId).classList.add('flex');
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+    document.getElementById(modalId).classList.remove('flex');
+    document.getElementById('temperatureOutput').textContent = "";
+    document.getElementById('areaOutput').textContent = "";
+    document.getElementById('celciusInput').value = "";
+    document.getElementById('alasInput').value = "";
+    document.getElementById('tinggiInput').value = "";
+  }
+
+  function convertTemperature() {
+    let celcius = parseFloat(document.getElementById('celciusInput').value);
+    if (isNaN(celcius)) {
+      document.getElementById('temperatureOutput').textContent = "Harap masukkan suhu yang valid.";
+      return;
+    }
+    let fahrenheit = (9 / 5 * celcius) + 32;
+    document.getElementById('temperatureOutput').textContent = `Suhu dalam Fahrenheit: ${fahrenheit.toFixed(2)} °F`;
+  }
+
+  function calculateArea() {
+    let alas = parseInt(document.getElementById('alasInput').value);
+    let tinggi = parseInt(document.getElementById('tinggiInput').value);
+
+    if (isNaN(alas) || isNaN(tinggi) || alas <= 0 || tinggi <= 0) {
+      document.getElementById('areaOutput').textContent = "Harap masukkan nilai alas dan tinggi yang valid.";
+      return;
+    }
+
+    let luas = 0.5 * alas * tinggi;
+    document.getElementById('areaOutput').textContent = `Luas segitiga: ${luas.toFixed(2)}`;
+  }
+
+
+
+  function calculateRectangleArea() {
+    let panjang = parseInt(document.getElementById('panjangInput').value);
+    let lebar = parseInt(document.getElementById('lebarInput').value);
+  
+    if (isNaN(panjang) || isNaN(lebar) || panjang <= 0 || lebar <= 0) {
+      document.getElementById('rectangleAreaOutput').textContent = "Harap masukkan nilai panjang dan lebar yang valid.";
+      return;
+    }
+  
+    let luas = panjang * lebar;
+    document.getElementById('rectangleAreaOutput').textContent = `Luas persegi panjang: ${luas}`;
+  }
+  
