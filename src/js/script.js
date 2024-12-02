@@ -287,3 +287,25 @@ document.getElementById("highSpeed").addEventListener("click", function () {
     ).style.animationDuration = `${currentSpeed}s`;
   }
 });
+
+// program simulasi lampu led
+// Array warna untuk setiap lampu
+const lampColors = [
+  "red", // Lampu 1
+  "blue", // Lampu 2
+  "yellow", // Lampu 3
+  "purple", // Lampu 4
+  "orange", // Lampu 5
+];
+
+function toggleLamp(lampNumber) {
+  const led = document.getElementById(`led${lampNumber}`);
+  led.classList.toggle("on");
+
+  // Mengatur warna LED saat dinyalakan
+  if (led.classList.contains("on")) {
+    led.style.backgroundColor = lampColors[lampNumber - 1]; // Menggunakan warna dari array
+  } else {
+    led.style.backgroundColor = "#ccc"; // Warna default saat mati
+  }
+}

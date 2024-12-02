@@ -462,7 +462,15 @@
               class="card w-full bg-gray-800 p-5 rounded-lg flex mt-5 lg:mt-0 flex-wrap justify-center lg:w-1/2"
               data-aos="zoom-in"
             >
-              <p class="font-bold text-gray-100 mb-8">Program Pascal</p>
+              <div class="grid justify-center text-center">
+                <p class="font-bold text-gray-100 mb-2 text-xl">
+                  Program Pascal
+                </p>
+                <span class="text-red-500 mb-8 text-center font-mono"
+                  >Silahkan tekan salah satu tombol di bawah ini untuk
+                  menjalankan salah satu programnya🔽🔽🔽</span
+                >
+              </div>
               <div class="textBox w-full flex flex-wrap justify-center gap-5">
                 <!-- Button to open conversion modals -->
                 <button
@@ -471,25 +479,82 @@
                 >
                   Program Konversi Suhu
                 </button>
+                <!-- Button program luas segitiga -->
                 <button
                   onclick="openModal('luasSegitigaModal')"
                   class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md mb-1 lg:mb-0"
                 >
                   Program Luas Segitiga
                 </button>
+                <!-- Button pprogram luas persegi panjang -->
                 <button
                   onclick="openModal('luasPersegiPanjangModal')"
                   class="px-4 py-2 bg-purple-500 text-white rounded-lg shadow-md mb-1 lg:mb-0"
                 >
                   Program Luas Persegi Panjang
                 </button>
-
+                <!-- Button program kipas angin -->
                 <button
                   onclick="openModal('kipasAngin')"
                   class="px-4 py-2 bg-sky-500 text-white rounded-lg shadow-md mb-1 lg:mb-0"
                 >
                   Program Kipas Angin
                 </button>
+
+                <!-- Button program Simulasi Lampu LED -->
+                <button
+                  onclick="openModal('lampuled')"
+                  class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md mb-1 lg:mb-0"
+                >
+                  Program Simulasi Lampu LED
+                </button>
+
+                <!-- Modal for Lampu LED -->
+                <div
+                  id="lampuled"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center modal"
+                >
+                  <div
+                    class="bg-white w-11/12 md:w-1/3 rounded-lg p-6 shadow-lg"
+                  >
+                    <h2 class="text-2xl font-semibold mb-4">
+                      Program Simulasi Stop Kontak Lampu LED
+                    </h2>
+                    <div class="container-group-lamp bg-gray-200 rounded-lg">
+                      <div class="lamp-container">
+                        <div class="lamp" id="lamp1">
+                          <div class="led" id="led1"></div>
+                          <button onclick="toggleLamp(1)">On / Off</button>
+                        </div>
+                        <div class="lamp" id="lamp2">
+                          <div class="led" id="led2"></div>
+                          <button onclick="toggleLamp(2)">On / Off</button>
+                        </div>
+                        <div class="lamp" id="lamp3">
+                          <div class="led" id="led3"></div>
+                          <button onclick="toggleLamp(3)">On / Off</button>
+                        </div>
+                        <div class="lamp" id="lamp4">
+                          <div class="led" id="led4"></div>
+                          <button onclick="toggleLamp(4)">On / Off</button>
+                        </div>
+                        <div class="lamp" id="lamp5">
+                          <div class="led" id="led5"></div>
+                          <button onclick="toggleLamp(5)">On / Off</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end space-x-2">
+                      <button
+                        onclick="closeModal('lampuled')"
+                        class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md"
+                      >
+                        Tutup
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
                 <!-- Modal for Temperature Conversion -->
                 <div
@@ -512,15 +577,15 @@
                       placeholder="Contoh: 25"
                     />
 
-                    <button
-                      onclick="convertTemperature()"
-                      class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md"
-                    >
-                      Konversi
-                    </button>
                     <p id="temperatureOutput" class="mt-4 text-gray-700"></p>
 
                     <div class="mt-4 flex justify-end space-x-2">
+                      <button
+                        onclick="convertTemperature()"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md"
+                      >
+                        Konversi
+                      </button>
                       <button
                         onclick="closeModal('konversiSuhuModal')"
                         class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md"
@@ -531,7 +596,7 @@
                   </div>
                 </div>
 
-                <!-- Modal for Triangle Area Calculation -->
+                <!-- Modal for Luas Segitiga -->
                 <div
                   id="luasSegitigaModal"
                   class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center modal"
@@ -562,15 +627,15 @@
                       placeholder="Contoh: 5"
                     />
 
-                    <button
-                      onclick="calculateArea()"
-                      class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md"
-                    >
-                      Hitung Luas
-                    </button>
                     <p id="areaOutput" class="mt-4 text-gray-700"></p>
 
                     <div class="mt-4 flex justify-end space-x-2">
+                      <button
+                        onclick="calculateArea()"
+                        class="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md"
+                      >
+                        Hitung Luas
+                      </button>
                       <button
                         onclick="closeModal('luasSegitigaModal')"
                         class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md"
@@ -612,15 +677,15 @@
                       placeholder="Contoh: 5"
                     />
 
-                    <button
-                      onclick="calculateRectangleArea()"
-                      class="px-4 py-2 bg-purple-500 text-white rounded-lg shadow-md"
-                    >
-                      Hitung Luas
-                    </button>
                     <p id="rectangleAreaOutput" class="mt-4 text-gray-700"></p>
 
                     <div class="mt-4 flex justify-end space-x-2">
+                      <button
+                        onclick="calculateRectangleArea()"
+                        class="px-4 py-2 bg-purple-500 text-white rounded-lg shadow-md"
+                      >
+                        Hitung Luas
+                      </button>
                       <button
                         onclick="closeModal('luasPersegiPanjangModal')"
                         class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md"
